@@ -4,6 +4,18 @@ import pyarrow.parquet as pq
 from tokenizers import Tokenizer
 from sklearn.metrics import accuracy_score, precision_recall_fscore_support, classification_report
 from model import CustomTextClassifier
+import random
+import numpy as np
+
+def set_seed(seed=42):
+    """Locks all random operations to ensure reproducible results."""
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+
+set_seed(42)
 
 def evaluate_model_v2():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
