@@ -11,7 +11,7 @@ from model import CustomTextClassifier
 import time
 import json
 
-# 1. Hardware Auto-Detection
+# Hardware Auto-Detection
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"--- Hardware Detected: {device} ---")
 
@@ -80,7 +80,7 @@ def train():
             print(f"Batch {batch_idx} | Loss: {loss.item():.4f} | Time Elapsed: {time.time() - start_time:.2f}s")
             
         
-    print("\n✅ Pipeline Test Complete! Model is learning.")
+    print("\n Pipeline Test Complete! Model is learning.")
     print("To train on the full dataset, remove the 'break' statement in train.py.")
     
     # Save the dynamically generated topic mapping

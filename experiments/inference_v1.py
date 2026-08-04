@@ -1,14 +1,16 @@
 import sys
 import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
-
-
 import torch
 import json
 import pyarrow.parquet as pq
 from tokenizers import Tokenizer
 from sklearn.metrics import accuracy_score, precision_recall_fscore_support
 from model import CustomTextClassifier
+
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
+
+
 
 def evaluate_model():
     # Detect Hardware

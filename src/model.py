@@ -9,13 +9,13 @@ class CustomTextClassifier(nn.Module):
         """
         super(CustomTextClassifier, self).__init__()
         
-        # 1. Embedding Layer (No pretrained weights)
+        # Embedding Layer (No pretrained weights)
         self.embedding = nn.Embedding(num_embeddings=vocab_size, embedding_dim=embed_dim, padding_idx=0)
         
-        # 2. Global Average Pooling (Extracts sequence meaning efficiently)
+        # Global Average Pooling (Extracts sequence meaning efficiently)
         self.pool = nn.AdaptiveAvgPool1d(1)
         
-        # 3. Fully Connected Layers
+        # Fully Connected Layers
         self.fc1 = nn.Linear(embed_dim, hidden_dim)
         self.relu = nn.ReLU()
         self.dropout = nn.Dropout(0.3)

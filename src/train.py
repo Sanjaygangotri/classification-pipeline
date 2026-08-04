@@ -114,7 +114,7 @@ def train2():
         if batch_idx % 100 == 0:
             print(f"Batch {batch_idx} | Loss: {loss.item():.4f} | Time Elapsed: {time.time() - start_time:.2f}s")
             
-    print("\n✅ Experiment 2 Training Complete!")
+    print("\n Experiment 2 Training Complete!")
     
     # Save as a new file to protect your baseline model
     torch.save(model.state_dict(), "final_models/final_model.pth")

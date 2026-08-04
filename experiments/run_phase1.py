@@ -6,10 +6,10 @@ DATASET_PATH = "dataset 10M.parquet"
 print("Starting Dataset Analysis...\n")
 start_time = time.time()
 
-# 1. Connect lazily to avoid loading full file into memory
+# Connect lazily to avoid loading full file into memory
 lazy_df = pl.scan_parquet(DATASET_PATH)
 
-# 2. Dataset Metadata
+# Dataset Metadata
 total_rows = lazy_df.select(pl.len()).collect().item()
 schema = lazy_df.schema
 
@@ -17,7 +17,7 @@ print(f"=== 1. DATASET OVERVIEW ===")
 print(f"Total Rows: {total_rows:,}")
 print(f"Schema: {schema}\n")
 
-# 3. Class Distribution
+# Class Distribution
 print("=== 2. TOPIC DISTRIBUTION ===")
 topic_counts = (
     lazy_df.group_by("TOPIC")
@@ -29,7 +29,7 @@ topic_counts = (
 print(topic_counts)
 print()
 
-# 4. Missing Values Check
+# Missing Values Check
 print("=== 3. MISSING VALUE CHECK ===")
 null_counts = lazy_df.select(
     [pl.col("DATA").null_count().alias("null_data"), pl.col("TOPIC").null_count().alias("null_topic")]
@@ -37,7 +37,7 @@ null_counts = lazy_df.select(
 print(null_counts)
 print()
 
-# 5. Text Statistics (Sampled on 100,000 rows for high speed)
+# Text Statistics (Sampled on 100,000 rows for high speed)
 print("=== 4. TEXT LENGTH STATISTICS (100k Sample) ===")
 sample_df = (
     lazy_df.select(["DATA", "TOPIC"])
